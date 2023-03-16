@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.satellites.core_ui.theme.DisableColor
 import com.satellites.core_ui.theme.EnableColor
+import com.satellites.core_ui.theme.SatellitesTheme
 
 @Composable
 fun CustomCircleShape(
@@ -39,7 +40,7 @@ fun CustomCircleShape(
 @Preview(showBackground = true)
 @Composable
 fun PreviewCustomCircleShape() {
-    MaterialTheme {
+    SatellitesTheme {
         CustomCircleShape(true, 100.dp)
     }
 }

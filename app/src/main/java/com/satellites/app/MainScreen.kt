@@ -16,6 +16,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.satellites.core_ui.model.NavigationType
 import com.satellites.core_ui.navigation.Route
 import com.satellites.core_ui.theme.GreyColor
+import com.satellites.main_presentation.detail.SatelliteDetailScreen
 import com.satellites.main_presentation.search.SatelliteListScreen
 
 @ExperimentalTextApi
@@ -80,9 +81,14 @@ fun MainScreen() {
 
                 composable(Route.SCR_SATELLITES_LIST.name) {
                     SatelliteListScreen(
-                        onNavigate = { navType ->
-                            handleNavigation(navType, null)
+                        onNavigate = { navType, data ->
+                            handleNavigation(navType, data)
                         }
+                    )
+                }
+                composable(Route.SCR_SATELLITES_DETAIL.name) { currentStackEntry ->
+                    SatelliteDetailScreen(
+                        satellite = currentStackEntry.savedStateHandle[Route.SCR_SATELLITES_DETAIL.name]
                     )
                 }
             }

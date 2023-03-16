@@ -1,6 +1,7 @@
 package com.satellites.main_domain.di
 
-import com.satellites.main_domain.interactor.CallSatellitesListUseCase
+import com.satellites.main_domain.interactor.CallSatelliteDetailUseCase
+import com.satellites.main_domain.interactor.CallSatelliteListUseCase
 import com.satellites.main_domain.repository.SatellitesRepository
 import dagger.Module
 import dagger.Provides
@@ -16,8 +17,18 @@ object MainDomainModule {
     @Provides
     fun provideCallSatelliteListUseCase(
         satellitesRepository: SatellitesRepository
-    ): CallSatellitesListUseCase {
-        return CallSatellitesListUseCase(
+    ): CallSatelliteListUseCase {
+        return CallSatelliteListUseCase(
+            satellitesRepository
+        )
+    }
+
+    @ViewModelScoped
+    @Provides
+    fun provideCallSatelliteDetailUseCase(
+        satellitesRepository: SatellitesRepository
+    ): CallSatelliteDetailUseCase {
+        return CallSatelliteDetailUseCase(
             satellitesRepository
         )
     }

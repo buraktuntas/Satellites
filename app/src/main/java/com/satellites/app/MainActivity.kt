@@ -10,6 +10,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.text.ExperimentalTextApi
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.satellites.app.ui.MainScreen
+import com.satellites.core_ui.theme.SatellitesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalTextApi
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MaterialTheme {
+            SatellitesTheme {
                 MainScreen()
             }
         }
