@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="common_error_txt_unknown">Beklenmeyen hata oluştu.</string>
+    <string name="common_error_txt_unknown">Unexpected error occurred</string>
+    <string name="search">Search</string>
+    <string name="no_results">No Results</string>
+
 
 
 </resources>
