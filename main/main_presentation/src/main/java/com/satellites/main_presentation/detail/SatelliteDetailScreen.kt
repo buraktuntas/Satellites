@@ -6,15 +6,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.satellites.core.util.changeDateFormat
+import com.satellites.core.util.formatWithDots
 import com.satellites.core_ui.components.SpaceVertical
 import com.satellites.core_ui.icon.IconLoading
-import com.satellites.core_ui.model.NavigationType
 import com.satellites.core_ui.text.*
 import com.satellites.core_ui.theme.*
 import com.satellites.core_ui.util.UiText
@@ -132,7 +131,7 @@ fun SatelliteDetailScreenUI(
                         textParameters = TextParameters(
                             modifier = Modifier
                                 .wrapContentSize(),
-                            text = UiText.DynamicString(satelliteDetail.cost_per_launch.toString()),
+                            text = UiText.DynamicString(satelliteDetail.cost_per_launch.formatWithDots()),
                         )
                     )
                 }
