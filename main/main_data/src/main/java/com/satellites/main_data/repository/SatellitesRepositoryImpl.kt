@@ -17,14 +17,16 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
-class SatellitesRepositoryImpl @Inject constructor(@ApplicationContext private val context: Context) :
-    SatellitesRepository {
+class SatellitesRepositoryImpl @Inject constructor(
+    @ApplicationContext private val context: Context,
+    private val moshi: Moshi
+) : SatellitesRepository {
 
     override suspend fun callGetSatelliteList(): Flow<SatelliteListResponse?> {
         return flow {
 
             val jsonFileString = context.applicationContext.readFromAsset("satellite-list.json")
-            val moshi = Moshi.Builder().build()
+
             val adapter: JsonAdapter<List<SatelliteListResponseItem>> = moshi.adapter(
                 Types.newParameterizedType(
                     List::class.java,
@@ -33,14 +35,14 @@ class SatellitesRepositoryImpl @Inject constructor(@ApplicationContext private v
             )
             val satelliteList: List<SatelliteListResponseItem>? = adapter.fromJson(jsonFileString)
 
-            delay(2000) //TODO remove dummy data
+            delay(2000)
             emit(
                 satelliteList?.let {
                     SatelliteListResponse(
                         satelliteListItem = it
                     )
                 }
-            ) //TODO remove dummy data
+            )
         }.flowOn(Dispatchers.IO)
     }
 
@@ -48,7 +50,6 @@ class SatellitesRepositoryImpl @Inject constructor(@ApplicationContext private v
         return flow {
 
             val jsonFileString = context.applicationContext.readFromAsset("satellite-detail.json")
-            val moshi = Moshi.Builder().build()
             val adapter: JsonAdapter<List<SatelliteDetailResponseItem>> = moshi.adapter(
                 Types.newParameterizedType(
                     List::class.java,
@@ -59,23 +60,22 @@ class SatellitesRepositoryImpl @Inject constructor(@ApplicationContext private v
                 adapter.fromJson(jsonFileString)
 
 
-            delay(2000) //TODO remove dummy data
+            delay(2000)
             emit(
                 satelliteDetail?.let {
                     SatelliteDetailResponse(
                         satelliteDetailItem = it
                     )
                 }
-            ) //TODO remove dummy data
+            )
         }.flowOn(Dispatchers.IO)
     }
 
     override suspend fun callGetSatellitePositions(): Flow<SatellitePositionResponse?> {
         return flow {
             val jsonFileString = context.applicationContext.readFromAsset("positions.json")
-            val moshi = Moshi.Builder().build()
             val adapter: JsonAdapter<SatellitePositionResponse> = moshi.adapter(
-                    SatellitePositionResponse::class.java
+                SatellitePositionResponse::class.java
             )
             var positionList: SatellitePositionResponse? = adapter.fromJson(jsonFileString)
             delay(2000)

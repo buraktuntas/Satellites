@@ -3,6 +3,7 @@ package com.satellites.main_data.di
 import android.content.Context
 import com.satellites.main_data.repository.SatellitesRepositoryImpl
 import com.satellites.main_domain.repository.SatellitesRepository
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,10 +19,11 @@ object MainDataModule {
     @Provides
     @Singleton
     fun provideMainRepository(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
+        moshi: Moshi
     ): SatellitesRepository {
         return SatellitesRepositoryImpl(
-            context
+            context, moshi
         )
     }
 }
