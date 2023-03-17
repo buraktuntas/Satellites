@@ -1,8 +1,6 @@
 package com.satellites.main_data.di
 
 import android.content.Context
-import com.satellites.core.data.remote.ServiceCreator
-import com.satellites.main_data.di.services.MainServices
 import com.satellites.main_data.repository.SatellitesRepositoryImpl
 import com.satellites.main_domain.repository.SatellitesRepository
 import dagger.Module
@@ -15,15 +13,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object MainDataModule {
-
-    /* Services */
-    @Provides
-    @Singleton
-    fun provideMainServices(
-        serviceCreator: ServiceCreator
-    ): MainServices {
-        return serviceCreator.createService(MainServices::class.java)
-    }
 
     /* Repositories */
     @Provides

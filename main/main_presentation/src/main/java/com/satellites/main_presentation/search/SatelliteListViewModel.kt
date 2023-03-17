@@ -77,7 +77,7 @@ class SatelliteListViewModel @Inject constructor(
     private fun filterSatelliteList(inputValueChange: InputValueChange) {
         viewModelScope.launch(ExceptionHandler.handler) {
             if (inputValueChange.newText.length > 2) {
-                delay(600)
+                delay(1000)
                 val filterList = uiState.value.satelliteList.filter { x ->
                     x?.name?.contains(inputValueChange.newText, true) == true
                 }

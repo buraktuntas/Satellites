@@ -35,14 +35,7 @@ fun CustomSearchView(
     modifier: Modifier,
     inputValueState: InputValueState,
     onValueChange: (InputValueChange) -> Unit,
-    labelText: UiText? = null,
-    placeholderText: @Composable (() -> Unit)? = null,
-    keyboardOnNext: () -> Unit,
-    keyboardOnDone: () -> Unit,
-    imeAction: ImeAction,
-    visualTransformation: VisualTransformation = VisualTransformation.None,
-    keyboardType: KeyboardType,
-    isSingleLine: Boolean = true,
+    labelText: UiText = UiText.DynamicString(""),
     isDigit: Boolean = false,
     minLength: Int? = null,
     maxLength: Int? = null,
@@ -93,7 +86,7 @@ fun CustomSearchView(
                         if (inputValueState.text == "")
                             TextBodySmall(
                                 TextParameters(
-                                    text = UiText.StringResource(R.string.search),
+                                    text = labelText,
                                     modifier = Modifier.fillMaxWidth(),
                                     textAlign = TextAlign.Start
 
@@ -137,12 +130,6 @@ fun PreviewCustomSearchView() {
         labelText = UiText.StringResource(R.string.search),
         inputValueState = InputValueState(),
         onValueChange = { },
-        imeAction = ImeAction.Done,
-        visualTransformation = VisualTransformation.None,
-        keyboardOnNext = { },
-        keyboardOnDone = { },
-        keyboardType = KeyboardType.Phone,
-        isSingleLine = true,
         maxLength = 10
     )
 }

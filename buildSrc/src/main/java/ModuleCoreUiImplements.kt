@@ -1,7 +1,6 @@
 import Dependencies.AndroidX
 import Dependencies.Compose
 import Dependencies.Dagger
-import Dependencies.Glide
 import Dependencies.Google
 import Dependencies.JakeWharton
 import Dependencies.Testing
@@ -22,8 +21,6 @@ object ModuleCoreUiImplements {
         Compose.hiltNavigation,
         Compose.lifecycleViewModel,
         Dagger.hiltAndroid,
-        JakeWharton.threeTen,
-        Glide.glide,
         Google.material,
         Google.accompanistPager,
     )

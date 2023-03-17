@@ -74,7 +74,6 @@ class SatelliteDetailViewModel @Inject constructor(
                     when (it) {
                         is ResultState.Success -> {
                             it.data?.list?.let { response ->
-                                Log.e("response,", response.toString())
                                 response.find { data -> uiState.value.satellite.id.toString() == data!!.id }
                                     ?.let { it1 ->
                                         _uiState.update { currentState ->

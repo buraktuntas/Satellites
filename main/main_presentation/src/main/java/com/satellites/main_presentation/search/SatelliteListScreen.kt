@@ -15,8 +15,6 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -119,13 +117,6 @@ fun SatelliteListScreenUI(
             onValueChange = { valueChangeData ->
                 onSearchValueChange(valueChangeData)
             },
-            imeAction = ImeAction.Next,
-            keyboardOnNext = {
-                onSearchKeyboardDone()
-            },
-            keyboardOnDone = { },
-            keyboardType = KeyboardType.Phone,
-            isDigit = true
         )
         SpaceVertical(height = spacing.spaceXXXLarge)
 

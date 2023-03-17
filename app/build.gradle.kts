@@ -11,6 +11,10 @@ android {
     namespace = Config.applicationId
     compileSdk = Config.compileSdkVersion
 
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+    
     signingConfigs {
         create(BuildType.BETA) {
             keyAlias = project.properties[BuildArgs.keyStoreAliasLabel].toString()

@@ -12,7 +12,6 @@ object ModuleCoreImplements {
         AndroidX.multiDex,
         Coroutines.coroutinesCore,
         Dagger.hiltAndroid,
-        JakeWharton.threeTen,
         JakeWharton.timber,
         OkHttp.okHttp,
         OkHttp.okHttpLoggingInterceptor,

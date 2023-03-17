@@ -5,7 +5,6 @@ import Dependencies.Google
 import Dependencies.JakeWharton
 import Dependencies.OkHttp
 import Dependencies.Retrofit
-import Dependencies.Root
 import Dependencies.Testing
 
 object ModuleAppImplements {
@@ -27,13 +26,10 @@ object ModuleAppImplements {
     Compose.lifecycleViewModel,
     Dagger.hiltAndroid,
     Google.material,
-    Google.accompanistSysUiControl,
     Google.accompanistPager,
-    JakeWharton.threeTen,
     JakeWharton.timber,
     Retrofit.retrofit,
     Retrofit.moshiConverter,
-    Root.rootControl,
     OkHttp.okHttp,
     OkHttp.okHttpLoggingInterceptor
   )

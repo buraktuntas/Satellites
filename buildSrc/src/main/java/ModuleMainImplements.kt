@@ -2,7 +2,6 @@ import Dependencies.AndroidX
 import Dependencies.Compose
 import Dependencies.Coroutines
 import Dependencies.Dagger
-import Dependencies.Glide
 import Dependencies.Google
 import Dependencies.JakeWharton
 import Dependencies.Retrofit
@@ -16,7 +15,6 @@ object ModuleMainImplements {
             AndroidX.multiDex,
             AndroidX.coreKtx,
             Dagger.hiltAndroid,
-            JakeWharton.threeTen,
             Retrofit.retrofit,
             Retrofit.moshiConverter
         )
@@ -54,7 +52,6 @@ object ModuleMainImplements {
             AndroidX.coreKtx,
             Coroutines.coroutinesCore,
             Dagger.hiltAndroid,
-            JakeWharton.threeTen,
             Retrofit.moshiConverter
         )
 
@@ -102,10 +99,8 @@ object ModuleMainImplements {
             Compose.hiltNavigation,
             Compose.lifecycleViewModel,
             Dagger.hiltAndroid,
-            Glide.glide,
             Google.material,
             Google.accompanistPager,
-            JakeWharton.threeTen,
             JakeWharton.timber
         )
 

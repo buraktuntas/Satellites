@@ -29,16 +29,11 @@ object LibVersion {
     /* Desugaring */
     const val coreLibraryDesugaring = "1.1.5"
 
-    /* Glide */
-    const val glide = "2.1.0"
-
     /* Google */
     const val material = "1.5.0"
-    const val accompanistSysUiControl = "0.23.1"
     const val accompanistPager = "0.23.1"
 
     /* JakeWharton */
-    const val threeTen = "1.3.1"
     const val timber = "4.7.1"
 
     /* OkHttp */
@@ -46,12 +41,6 @@ object LibVersion {
 
     /* Retrofit */
     const val retrofit = "2.9.0"
-
-    /* Room */
-    const val room = "2.4.0"
-
-    /* Root */
-    const val rootControl = "0.1.0"
 
     /* Security */
     const val securityCrypto = "1.0.0"
@@ -62,7 +51,7 @@ object LibVersion {
     const val junitExt = "1.1.3"
     const val coroutinesTest = "1.5.1"
     const val truth = "1.1.3"
-    const val mockk = "1.10.0"
+    const val mockk = "1.13.4"
     const val mockWebServer = "4.9.3"
     const val testRunner = "1.4.0"
 }

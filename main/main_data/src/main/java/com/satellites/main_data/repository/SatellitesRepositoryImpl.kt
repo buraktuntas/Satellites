@@ -1,7 +1,6 @@
 package com.satellites.main_data.repository
 
 import android.content.Context
-import android.util.Log
 import com.satellites.core.util.readFromAsset
 import com.satellites.main_domain.model.response.detail.SatelliteDetailResponse
 import com.satellites.main_domain.model.response.detail.SatelliteDetailResponseItem
@@ -73,17 +72,13 @@ class SatellitesRepositoryImpl @Inject constructor(@ApplicationContext private v
 
     override suspend fun callGetSatellitePositions(): Flow<SatellitePositionResponse?> {
         return flow {
-            Log.e("positionList","positionList.toString()")
             val jsonFileString = context.applicationContext.readFromAsset("positions.json")
             val moshi = Moshi.Builder().build()
-            Log.e("positionList2",jsonFileString)
             val adapter: JsonAdapter<SatellitePositionResponse> = moshi.adapter(
                     SatellitePositionResponse::class.java
             )
-            Log.e("positionList3","positionList.toString()")
             var positionList: SatellitePositionResponse? = adapter.fromJson(jsonFileString)
             delay(2000)
-            Log.e("positionList4",positionList.toString())
             emit(
                 positionList?.let {
                     SatellitePositionResponse(
