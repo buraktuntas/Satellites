@@ -2,6 +2,7 @@ package com.satellites.main_domain.di
 
 import com.satellites.main_domain.interactor.CallSatelliteDetailUseCase
 import com.satellites.main_domain.interactor.CallSatelliteListUseCase
+import com.satellites.main_domain.interactor.CallSatellitePositionsUseCase
 import com.satellites.main_domain.repository.SatellitesRepository
 import dagger.Module
 import dagger.Provides
@@ -32,4 +33,15 @@ object MainDomainModule {
             satellitesRepository
         )
     }
+
+    @ViewModelScoped
+    @Provides
+    fun provideCallSatellitePositionsUseCase(
+        satellitesRepository: SatellitesRepository
+    ): CallSatellitePositionsUseCase {
+        return CallSatellitePositionsUseCase(
+            satellitesRepository
+        )
+    }
+
 }

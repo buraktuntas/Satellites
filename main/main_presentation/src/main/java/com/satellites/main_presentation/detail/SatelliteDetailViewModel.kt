@@ -1,21 +1,25 @@
 package com.satellites.main_presentation.detail
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.satellites.core.domain.model.common.ResultState
 import com.satellites.core.util.ExceptionHandler
 import com.satellites.core_ui.util.UiEvent
 import com.satellites.main_domain.interactor.CallSatelliteDetailUseCase
+import com.satellites.main_domain.interactor.CallSatellitePositionsUseCase
 import com.satellites.main_domain.model.response.list.SatelliteListResponseItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SatelliteDetailViewModel @Inject constructor(
-    private val callSatelliteDetailUseCase: CallSatelliteDetailUseCase
+    private val callSatelliteDetailUseCase: CallSatelliteDetailUseCase,
+    private val callSatellitePositionsUseCase: CallSatellitePositionsUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SatelliteDetailUiState())
@@ -26,6 +30,8 @@ class SatelliteDetailViewModel @Inject constructor(
 
     init {
         callGetSatelliteDetail()
+        callGetPositions()
+
     }
 
     private fun callGetSatelliteDetail() {
@@ -61,6 +67,48 @@ class SatelliteDetailViewModel @Inject constructor(
         }
     }
 
+    private fun callGetPositions() {
+        viewModelScope.launch(ExceptionHandler.handler) {
+            callSatellitePositionsUseCase(
+                onResult = {
+                    when (it) {
+                        is ResultState.Success -> {
+                            it.data?.list?.let { response ->
+                                Log.e("response,", response.toString())
+                                response.find { data -> uiState.value.satellite.id.toString() == data!!.id }
+                                    ?.let { it1 ->
+                                        _uiState.update { currentState ->
+                                            currentState.copy(
+                                                positions = it1
+                                            )
+                                        }
+                                        updatePos()
+                                    }
+                            }
+                        }
+
+                        is ResultState.Error -> {
+                            _uiEvent.send(
+                                UiEvent.ShowError(it.exception)
+                            )
+                        }
+                        else -> {}
+                    }
+                }
+            )
+        }
+    }
+
+    fun updatePos() {
+        viewModelScope.launch(ExceptionHandler.handler) {
+            uiState.value.positions.positions.forEach { it ->
+                updatePosition(it.posX!!, it.posY!!)
+                delay(3000)
+            }
+        }
+
+    }
+
     private fun updateSatelliteLoading(isLoading: Boolean) {
         viewModelScope.launch(ExceptionHandler.handler) {
             _uiState.update { currentState ->
@@ -70,11 +118,23 @@ class SatelliteDetailViewModel @Inject constructor(
             }
         }
     }
+
     fun updateSatelliteId(satellite: SatelliteListResponseItem?) {
         viewModelScope.launch(ExceptionHandler.handler) {
             _uiState.update { currentState ->
                 currentState.copy(
                     satellite = satellite!!
+                )
+            }
+        }
+    }
+
+    fun updatePosition(posX: Double, posY: Double) {
+        viewModelScope.launch(ExceptionHandler.handler) {
+            _uiState.update { currentState ->
+                currentState.copy(
+                    posX = posX,
+                    posY = posY
                 )
             }
         }

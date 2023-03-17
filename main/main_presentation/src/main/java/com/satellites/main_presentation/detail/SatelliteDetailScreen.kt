@@ -20,13 +20,11 @@ import com.satellites.core_ui.util.UiText
 import com.satellites.main_domain.model.response.detail.SatelliteDetailResponseItem
 import com.satellites.main_domain.model.response.list.SatelliteListResponseItem
 
-
-@OptIn(ExperimentalComposeUiApi::class)
 @ExperimentalPagerApi
 @Composable
 fun SatelliteDetailScreen(
     viewModel: SatelliteDetailViewModel = hiltViewModel(),
-    satellite:SatelliteListResponseItem?
+    satellite: SatelliteListResponseItem?
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
@@ -44,8 +42,8 @@ fun SatelliteDetailScreenUI(
     uiState: SatelliteDetailUiState,
 ) {
     val spacing = LocalSpacing.current
-    val satellite=uiState.satellite
-    val satelliteDetail=uiState.satelliteDetail
+    val satellite = uiState.satellite
+    val satelliteDetail = uiState.satelliteDetail
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -71,7 +69,7 @@ fun SatelliteDetailScreenUI(
                 TextParameters(
                     modifier = Modifier
                         .wrapContentSize(),
-                    text = UiText.DynamicString( satellite.name.toString()),
+                    text = UiText.DynamicString(satellite.name.toString()),
                 )
             )
             SpaceVertical(height = spacing.spaceXSmall)
@@ -109,7 +107,7 @@ fun SatelliteDetailScreenUI(
                         textParameters = TextParameters(
                             modifier = Modifier
                                 .wrapContentSize(),
-                            text = UiText.DynamicString(satelliteDetail.height.toString()+"/"+satelliteDetail.mass.toString()),
+                            text = UiText.DynamicString(satelliteDetail.height.toString() + "/" + satelliteDetail.mass.toString()),
                         )
                     )
                 }
@@ -157,7 +155,7 @@ fun SatelliteDetailScreenUI(
                         textParameters = TextParameters(
                             modifier = Modifier
                                 .wrapContentSize(),
-                            text = UiText.DynamicString("test"),
+                            text = UiText.DynamicString("("+uiState.posX.toString()+","+uiState.posY.toString()+")"),
                         )
                     )
                 }
