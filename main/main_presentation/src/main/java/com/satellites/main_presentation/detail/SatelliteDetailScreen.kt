@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.satellites.core.util.changeDateFormat
 import com.satellites.core_ui.components.SpaceVertical
 import com.satellites.core_ui.icon.IconLoading
 import com.satellites.core_ui.model.NavigationType
@@ -78,7 +79,7 @@ fun SatelliteDetailScreenUI(
                 textParameters = TextParameters(
                     modifier = Modifier
                         .wrapContentSize(),
-                    text = UiText.DynamicString(satelliteDetail.first_flight),
+                    text = UiText.DynamicString(satelliteDetail.first_flight.changeDateFormat()),
                 )
             )
             SpaceVertical(height = spacing.spaceXXXLarge)
