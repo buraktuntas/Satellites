@@ -69,7 +69,7 @@ fun SatelliteDetailScreenUI(
                 TextParameters(
                     modifier = Modifier
                         .wrapContentSize(),
-                    text = UiText.DynamicString(satellite.name.toString()),
+                    text = UiText.DynamicString(satellite.name),
                 )
             )
             SpaceVertical(height = spacing.spaceXSmall)
