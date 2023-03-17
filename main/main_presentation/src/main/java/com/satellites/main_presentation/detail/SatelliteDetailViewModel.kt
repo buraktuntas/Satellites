@@ -82,7 +82,7 @@ class SatelliteDetailViewModel @Inject constructor(
                                                 positions = it1
                                             )
                                         }
-                                        updatePos()
+                                        updatePosXPosY()
                                     }
                             }
                         }
@@ -99,11 +99,18 @@ class SatelliteDetailViewModel @Inject constructor(
         }
     }
 
-    fun updatePos() {
+    fun updatePosXPosY() {
         viewModelScope.launch(ExceptionHandler.handler) {
-            uiState.value.positions.positions.forEach { it ->
-                updatePosition(it.posX!!, it.posY!!)
+            var index = -1
+            while (true) {
+                index++
+                updatePosition(
+                    uiState.value.positions.positions[index].posX!!,
+                    uiState.value.positions.positions[index].posY!!)
                 delay(3000)
+                if (index == uiState.value.positions.positions.size-1) {
+                    index = -1
+                }
             }
         }
 
